@@ -56,6 +56,7 @@ public class LoginWindow extends Application {
             a.showAndWait();
         } catch (SQLException e) {
             Alert a = new Alert(AlertType.ERROR);
+            e.printStackTrace();
             a.setHeaderText("Could not connect to database.");
             a.setContentText("Please check your login information and try again.");
             a.showAndWait();
@@ -109,12 +110,12 @@ public class LoginWindow extends Application {
         
         GridPane inputFields = new GridPane();
         
-        TextField name = new TextField();
-        name.setPromptText("username");
+        TextField name = new TextField("group10");
         PasswordField password = new PasswordField();
+        password.setText("group10");
         password.setPromptText("password");
         TextField port = new TextField("3306");
-        TextField uri = new TextField("localhost");
+        TextField uri = new TextField("database-1.cfh7xy46cowz.us-west-1.rds.amazonaws.com");
         TextField dbname = new TextField("consulting_company");
         
         inputFields.add(new Label("username: "), 0, 0);
