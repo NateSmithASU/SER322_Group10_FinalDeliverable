@@ -99,11 +99,11 @@ public class EmployeeBox extends VBox {
         submit.setOnAction(e -> {
             try {
                 dbm.addEmployee(Integer.parseInt(e_id.getText()), name.getText(), role.getText());
-                e_id.clear();
-                name.clear();
-                role.clear();
-                tv.setItems(dbm.viewEmployees());
-            } catch (SQLException exc) {
+                    e_id.clear();
+                    name.clear();
+                    role.clear();
+                    tv.setItems(dbm.viewEmployees());
+            } catch (Exception exc) {
                 Alert a = new Alert(AlertType.ERROR);
                 a.setHeaderText(exc.getMessage());
                 a.show();
