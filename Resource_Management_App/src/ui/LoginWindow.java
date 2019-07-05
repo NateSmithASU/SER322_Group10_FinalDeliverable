@@ -38,9 +38,19 @@ public class LoginWindow extends Application {
         Dialog<String> loginMenu = createLoginPopup();
         loginMenu.showAndWait();
         String url = loginMenu.getResult();
+        dbm = initializeDBM(url);
         
-        try {
-            dbm = new DatabaseManager(url);
+
+        
+        Scene scene = new Scene(mainMenu());
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    private DatabaseManager initializeDBM(String url) {
+        DatabaseManager newDBM = null;
+            try {
+            newDBM = new DatabaseManager(url);
             Alert a = new Alert(AlertType.CONFIRMATION);
             a.setHeaderText("Connection successful.");
             a.showAndWait();
@@ -51,8 +61,7 @@ public class LoginWindow extends Application {
             a.showAndWait();
             Platform.exit();
         }
-        
-        
+        return newDBM;
     }
     
     @Override
@@ -69,11 +78,26 @@ public class LoginWindow extends Application {
     
     private VBox mainMenu() {
         VBox menu = new VBox();
-        Button addEmployee = new Button("Add Employee");
+        menu.setSpacing(10);
         
-        addEmployee.setOnAction( e -> {
+        Button manageEmployees = new Button("Manage Employees");
+        manageEmployees.setOnAction( e -> {
             Stage stage = new Stage();
+            Scene scene = new Scene(new EmployeeBox(dbm));
+            stage.setScene(scene);
+            stage.show();
         });
+        
+        Button exitButton = new Button("Exit");
+        exitButton.setOnAction(e -> {
+            Platform.exit();
+    });
+        
+        menu.getChildren().add(manageEmployees);
+        menu.getChildren().add(exitButton);
+        
+        
+        return menu;
     }
     
     
