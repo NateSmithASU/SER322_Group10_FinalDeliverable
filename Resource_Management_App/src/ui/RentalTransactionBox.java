@@ -30,6 +30,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 import java.sql.Date;
+import java.time.LocalTime;
 
 /**
  *
@@ -97,8 +98,8 @@ public class RentalTransactionBox extends GridPane {
         
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
-            LocalDateTime d_in = date_in.getValue().atStartOfDay();
-            LocalDateTime d_out = date_out.getValue().atStartOfDay();
+            LocalDateTime d_in = date_in.getValue().atTime(LocalTime.now());
+            LocalDateTime d_out = date_out.getValue().atTime(LocalTime.now());
             try {
                 dbm.addRentalTransaction(
                         Integer.parseInt(rental_id.getText()), 
