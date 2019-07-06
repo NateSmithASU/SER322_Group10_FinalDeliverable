@@ -1,6 +1,6 @@
 package ui;
 
-import db.DatabaseManager;
+import db.DatabaseController;
 
 import java.sql.SQLException;
 
@@ -16,14 +16,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
-import javafx.geometry.Insets;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.TableView;
 
 /**
  *
@@ -31,26 +32,24 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class LoginWindow extends Application {
     
-    private DatabaseManager dbm = null;
+    private DatabaseController dbm = null;
     
     @Override
     public void start(Stage primaryStage) {
         Dialog<String> loginMenu = createLoginPopup();
         loginMenu.showAndWait();
         String url = loginMenu.getResult();
-        dbm = initializeDBM(url);
-        
-
+        dbm = initializeDBM(url);        
         
         Scene scene = new Scene(mainMenu());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
     
-    private DatabaseManager initializeDBM(String url) {
-        DatabaseManager newDBM = null;
+    private DatabaseController initializeDBM(String url) {
+        DatabaseController newDBM = null;
             try {
-            newDBM = new DatabaseManager(url);
+            newDBM = new DatabaseController(url);
             Alert a = new Alert(AlertType.CONFIRMATION);
             a.setHeaderText("Connection successful.");
             a.showAndWait();
@@ -80,23 +79,56 @@ public class LoginWindow extends Application {
     private VBox mainMenu() {
         VBox menu = new VBox();
         menu.setSpacing(10);
-        
+        menu.setPadding(new Insets(25));
+                
         Button manageEmployees = new Button("Manage Employees");
         manageEmployees.setOnAction( e -> {
             Stage stage = new Stage();
             Scene scene = new Scene(new EmployeeBox(dbm));
             stage.setScene(scene);
+            stage.setTitle("Employee");
+            stage.show();
+        });
+        
+        Button manageCompanies = new Button("Manage Companies");
+        
+        manageCompanies.setOnAction( e -> {
+            Stage stage = new Stage();
+            Scene scene = new Scene(new CompanyBox(dbm));
+            stage.setScene(scene);
+            stage.setTitle("Company");
+            stage.show();
+        });
+        
+                Button manageResources = new Button("Manage Resources");
+        
+        manageResources.setOnAction( e -> {
+            Stage stage = new Stage();
+            Scene scene = new Scene(new ResourceBox(dbm));
+            stage.setScene(scene);
+            stage.setTitle("Resource");
+            stage.show();
+        });
+        
+        Button manageRentalTransactions = new Button("Manage Rental Transactions");
+        manageRentalTransactions.setOnAction( e-> {
+            Stage stage = new Stage();
+            Scene scene = new Scene(new RentalTransactionBox(dbm));
+            stage.setScene(scene);
+            stage.setTitle("Rental Transaction");
             stage.show();
         });
         
         Button exitButton = new Button("Exit");
         exitButton.setOnAction(e -> {
             Platform.exit();
-    });
-        
+        });
         menu.getChildren().add(manageEmployees);
-        menu.getChildren().add(exitButton);
+        menu.getChildren().add(manageCompanies);
+        menu.getChildren().add(manageResources);
+        menu.getChildren().add(manageRentalTransactions);
         
+        menu.getChildren().add(exitButton);
         
         return menu;
     }
