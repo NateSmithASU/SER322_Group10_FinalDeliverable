@@ -140,7 +140,7 @@ public class LoginWindow extends Application {
         password.setText("group10");
         password.setPromptText("password");
         TextField port = new TextField("3306");
-        TextField uri = new TextField("aurorareplica-cluster.cluster-cfh7xy46cowz.us-west-1.rds.amazonaws.com");
+        TextField uri = new TextField("database-1.cfh7xy46cowz.us-west-1.rds.amazonaws.com");
         TextField dbname = new TextField("consulting_company");
         
         inputFields.add(new Label("username: "), 0, 0);
