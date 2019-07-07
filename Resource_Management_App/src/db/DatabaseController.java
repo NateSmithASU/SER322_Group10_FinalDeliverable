@@ -1,25 +1,21 @@
 package db;
 
-import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
-import java.sql.Timestamp;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
-
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableView;
+import javafx.util.Callback;
 
 /**
  *

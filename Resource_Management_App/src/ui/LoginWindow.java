@@ -1,30 +1,23 @@
 package ui;
 
 import db.DatabaseController;
-
 import java.sql.SQLException;
-
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.layout.VBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.GridPane;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.Label;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableView;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  *
@@ -147,7 +140,7 @@ public class LoginWindow extends Application {
         password.setText("group10");
         password.setPromptText("password");
         TextField port = new TextField("3306");
-        TextField uri = new TextField("database-1.cfh7xy46cowz.us-west-1.rds.amazonaws.com");
+        TextField uri = new TextField("aurorareplica-cluster.cluster-cfh7xy46cowz.us-west-1.rds.amazonaws.com");
         TextField dbname = new TextField("consulting_company");
         
         inputFields.add(new Label("username: "), 0, 0);
