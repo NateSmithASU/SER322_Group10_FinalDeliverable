@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Resource_Management_App.jnlp">
+  <information>
+    <title>Resource_Management_App</title>
+    <vendor>natha</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Resource_Management_App.jar" size="19046" download="eager" />
+    <jar href="lib\jfxswt.jar" size="33934" download="eager" />
+    <jar href="lib\mysql-connector-java-8.0.16.jar" size="2293144" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Resource_Management_App" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="ui.LoginWindow"  name="Resource_Management_App" />
+  <update check="always"/>
+</jnlp>
